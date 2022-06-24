@@ -28,13 +28,19 @@ galleryEl.addEventListener("click", eventGallery);
 document.addEventListener("keyup", test);
 
 function eventGallery(event) {
-  console.log(event.target.dataset.source);
-  instance = basicLightbox.create(`
-    <img src="${event.target.dataset.source}" alt="${event.target.alt}" />
-
-`)
+  console.log(event.target.nodeName);
+  if (event.target.nodeName === "IMG") {  instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}" alt="${event.target.alt}" />`,
+    {
+      onShow: (instance)=> console.log('onShow', instance),
+      onclose : (instance)=> console.log('onClose', instance)
+    }
+  
+  )
+  instance.show((instance) => console.log('finished show()', instance));
+  }
  
-  instance.show();
+  
 }
 
 function test(event) {

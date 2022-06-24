@@ -15,7 +15,7 @@ btnCreate.addEventListener("click", createEl);
 btnDestroy.addEventListener("click", destroyEl);
 
 function createEl(event) {
-  destroyEl(event);
+  // destroyEl(event);
 
   console.log(numberEl.value);
   for (let index = 0; index < numberEl.value; index++) {
@@ -33,19 +33,25 @@ function createEl(event) {
   console.log("Вот что получает insert : =>  " + divAcumulator + "\n ТИп данных => " + typeof text);
 
   // ! А вот и сам инсетрт
-  containerEl.insertAdjacentHTML("afterbegin", divAcumulator.join(''));
-    
-  divAcumulator = [];
+  containerEl.insertAdjacentHTML("beforeend", divAcumulator.join(''));
+    divAcumulator = [];
+  
 }
 const testDestroy = document.querySelectorAll("#gerator");
 
 function destroyEl(event) {
-  const len = containerEl.children.length;
-  for (let index = 0; index < len; index++) {
-    console.log(containerEl.children.length);
-    containerEl.lastElementChild.remove();
-    
-  }
+  //  ! Удаление вар 1.
+  // const len = containerEl.children.length;
+  // for (let index = 0; index < len; index++) {
+  //   console.log(containerEl.children.length);
+  //   containerEl.lastElementChild.remove();    
+  // }
+  //  ! Вариант 2
+  containerEl.innerHTML = '';
+  
+  
+  
+  divAcumulator = [];
 }
 
 
